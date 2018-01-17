@@ -1,0 +1,86 @@
+<style>
+  .formulario-filho{
+    display: flex;
+    justify-content: center;
+  }
+
+  .formulario {
+    margin: 1em;
+  }
+
+  .formulario-pai {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .descricao {
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .botao {
+    margin: auto;
+    margin-bottom: 3em;
+  }
+
+  .alertdisplay {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+  }
+
+</style>
+
+<form class="formulario-pai" method="post" action="/bancarios/teste">
+  <div class="descricao">
+    <h1>Insira os números do título bancário a ser testado:</h1>
+  </div>
+  <div class="formulario-filho">
+    <div class="formulario">
+      <input name="campo1a" maxlength="5" size="5">
+      <b>.</b>
+      <input name="campo1b" maxlength="5" size="5">
+    </div>
+    <div class="formulario">
+      <input name="campo2a" maxlength="5" size="5">
+      <b>.</b>
+      <input name="campo2b"  maxlength="6" size="6">
+    </div>
+    <div class="formulario">
+      <input name="campo3a" maxlength="5" size="5">
+      <b>.</b>
+      <input name="campo3b" maxlength="6" size="6">
+    </div>
+    <div class="formulario">
+      <input name="campo4" maxlength="1" size="1">
+    </div>
+    <div class="formulario">
+      <input name="campo5" maxlength="14" size="15">
+    </div>
+  </div>
+  <button type="submit" class="botao btn">Testar</button>
+  {{#if erro}}
+  <div class="alert alert-danger alertdisplay" role="alert">
+    A linha digitada não é válida!<br>
+    Erro: {{descricao}}
+  </div>
+  {{/if}}
+
+  {{#if sucesso}}
+  <div class="alert alert-success alertdisplay" role="alert">
+    A linha digitada é válida! <br>
+    Dados: <br>
+    <ul>
+      <li>Código de barras: {{dados.codBar}};</li>
+      <li>Vencimento: {{dados.vencimento}}</li>
+      <li>Valor: R$ {{dados.valor}}</li>
+    </ul>
+  </div>
+  {{/if}}
+
+  <a class="btn" href="/" role="button">Voltar</a>
+</form>

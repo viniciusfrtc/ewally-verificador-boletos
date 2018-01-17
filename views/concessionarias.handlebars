@@ -1,0 +1,85 @@
+<style>
+  .formulario-filho{
+    display: flex;
+    justify-content: center;
+  }
+
+  .formulario {
+    margin: 1em;
+  }
+
+  .formulario-pai {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .descricao {
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .botao {
+    margin: auto;
+    margin-bottom: 3em;
+  }
+
+  .alertdisplay {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: auto;
+  }
+
+</style>
+
+<form class="formulario-pai" method="post" action="/concessionarias/teste">
+  <div class="descricao">
+    <h1>Insira os números do pagamento de concessionária a ser testado:</h1>
+  </div>
+  <div class="formulario-filho">
+    <div class="formulario">
+      <input name="campo1" maxlength="11" size="12">
+      <input name="campo1dv" maxlength="1" size="2">
+    </div>
+    <div class="formulario">
+      <input name="campo2" maxlength="11" size="12">
+      <input name="campo2dv" maxlength="1" size="2">
+    </div>
+    <div class="formulario">
+      <input name="campo3" maxlength="11" size="12">
+      <input name="campo3dv" maxlength="1" size="2">
+    </div>
+    <div class="formulario">
+      <input name="campo4" maxlength="11" size="12">
+      <input name="campo4dv" maxlength="1" size="2">
+    </div>
+    <div class="formulario">
+      <input type="checkbox" name="data">Tem data de vencimento? </input>
+    </div>
+  </div>
+  <button type="submit" class="botao btn">Testar</button>
+
+
+  <a class="btn" href="/" role="button">Voltar</a>
+</form>
+
+{{#if erro}}
+<div class="alert alert-danger alertdisplay" role="alert">
+  A linha digitada não é válida!<br>
+  Erro: {{descricao}}
+</div>
+{{/if}}
+
+{{#if sucesso}}
+<div class="alert alert-success alertdisplay" role="alert">
+  A linha digitada é válida! <br>
+  Dados: <br>
+  <ul>
+    <li>Código de barras: {{dados.codBar}};</li>
+    <li>Vencimento: {{dados.vencimento}}</li>
+    <li>Valor: R$ {{dados.valor}}</li>
+  </ul>
+</div>
+{{/if}}
